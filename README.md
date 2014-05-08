@@ -1,13 +1,8 @@
-## Status
+# rails3-jquery-autocomplete
 
-Unfortunately, I don't have much time to work on this gem, I'm looking for
-someone to help with its maintenance. Send me an email if you are interested in
-getting push privileges to this repo.
+[![Build Status](https://secure.travis-ci.org/crowdint/rails3-jquery-autocomplete.png)](http://travis-ci.org/crowdint/rails3-jquery-autocomplete)
 
-
-# rails4-autocomplete
-
-An easy way to use jQuery's autocomplete with Rails 4.
+An easy way to use jQuery's autocomplete with Rails 3.
 
 Supports both ActiveRecord, [mongoid](http://github.com/mongoid/mongoid), and [MongoMapper](https://github.com/jnunemaker/mongomapper).
 
@@ -41,7 +36,7 @@ I'd encourage you to understand how to use those 3 amazing tools before attempti
 
 Include the gem on your Gemfile
 
-    gem 'rails4-autocomplete'
+    gem 'rails3-jquery-autocomplete'
 
 Install it
 
@@ -72,7 +67,7 @@ uncompressed version by running:
 
     rails generate autocomplete:uncompressed
 
-### Rails 4.x
+### Rails 3.1.x
 
 Just add it to your app/assets/javascripts/application.js file
 
@@ -207,13 +202,29 @@ If you are not using a FormBuilder (form_for) or you just want to include an aut
 To generate an autocomplete input field that accepts multiple values separated by a given delimiter, add the `'data-delimiter'` and `:multiple` options:
 
     form_for @product do |f|
-      f.autocomplete_field :brand_names, autocomplete_brand_name_products_path,
+      f.autocomplete_field :brand_names, autocomplete_brand_name_products_path, 
       'data-delimiter' => ',', :multiple => true
     end
 
 NOTE: Setting the `:multiple` option to `true` will result in the chosen values being submitted as an array. Leaving this option off will result in the values being passed as a single string, with the values separated by your chosen delimiter.
 
 Now your autocomplete code is unobtrusive, Rails 3 style.
+
+#### Client-side config
+
+To configure the behaviour if no matches are found, you can set the following options:
+
+    jQuery.railsAutocomplete.options.showNoMatches //default 'true' (yeah, it's a string)
+    jQuery.railsAutocomplete.options.noMatchesLabel //default 'no existing matches'
+
+These will change the behaviour globally. To set them on a single input field use:
+
+    f.autocomplete_field :brand_names, autocomplete_brand_name_products_path, 
+    'data-showNoMatches' => 'false'
+    #or
+    f.autocomplete_field :brand_names, autocomplete_brand_name_products_path, 
+    'data-noMatchesLabel' => 'no brands found'
+
 
 ### Getting the object id
 
@@ -371,4 +382,13 @@ suite and move them into the main suite. Your tests will run much
 faster, and there will be less likelihood of your feature breaking in
 the future. Thanks!
 
+# Thanks to
+
+Everyone on [this list](https://github.com/crowdint/rails3-jquery-autocomplete/contributors)
+
+# About the Author
+
+[Crowd Interactive](http://www.crowdint.com) is an American web design and development company that happens to work in Colima, Mexico.
+We specialize in building and growing online retail stores. We don’t work with everyone – just companies we believe in. Call us today to see if there’s a fit.
+Find more info [here](http://www.crowdint.com)!
 
